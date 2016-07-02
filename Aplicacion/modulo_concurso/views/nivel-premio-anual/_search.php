@@ -19,8 +19,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nivel_ranking_id') ?>
 
-    <?= $form->field($model, 'nombre') ?>
-
     <?= $form->field($model, 'puntaje_minimo') ?>
 
     <?= $form->field($model, 'puntaje_hasta') ?>

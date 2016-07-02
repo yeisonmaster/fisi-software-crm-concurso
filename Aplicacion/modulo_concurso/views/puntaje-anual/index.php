@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PuntajeSearch */
+/* @var $searchModel app\models\PuntajeAnualSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Puntajes';
+$this->title = 'Puntaje Anuals';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="puntaje-index">
+<div class="puntaje-anual-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Puntaje', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Puntaje Anual', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,9 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'campana_id',
-            'pedido_detalle_id',
-            'puntaje_actual',
+            'ranking_anual_anio',
+            'interlocutor_comercial_id',
             'puntaje_acumulado',
 
             ['class' => 'yii\grid\ActionColumn'],

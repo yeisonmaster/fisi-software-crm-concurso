@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\PremioProducto;
+use app\models\PuntajeCampana;
 
 /**
- * PremioProductoSearch represents the model behind the search form about `app\models\PremioProducto`.
+ * PuntajeCampanaSearch represents the model behind the search form about `app\models\PuntajeCampana`.
  */
-class PremioProductoSearch extends PremioProducto
+class PuntajeCampanaSearch extends PuntajeCampana
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ class PremioProductoSearch extends PremioProducto
     public function rules()
     {
         return [
-            [['id', 'campana_id', 'producto_id', 'estado', 'puntaje_con_canje', 'puntaje_sin_canje'], 'integer'],
-            [['nombre'], 'safe'],
+            [['campana_id', 'interlocutor_comercial_id', 'puntaje_actual', 'puntaje_acumulado'], 'integer'],
         ];
     }
 
@@ -41,7 +40,7 @@ class PremioProductoSearch extends PremioProducto
      */
     public function search($params)
     {
-        $query = PremioProducto::find();
+        $query = PuntajeCampana::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +58,11 @@ class PremioProductoSearch extends PremioProducto
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'campana_id' => $this->campana_id,
-            'producto_id' => $this->producto_id,
-            'estado' => $this->estado,
-            'puntaje_con_canje' => $this->puntaje_con_canje,
-            'puntaje_sin_canje' => $this->puntaje_sin_canje,
+            'interlocutor_comercial_id' => $this->interlocutor_comercial_id,
+            'puntaje_actual' => $this->puntaje_actual,
+            'puntaje_acumulado' => $this->puntaje_acumulado,
         ]);
-
-        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

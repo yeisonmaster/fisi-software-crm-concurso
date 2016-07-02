@@ -10,13 +10,13 @@ use Yii;
  * @property integer $id
  * @property string $nombre
  * @property integer $estado
+ * @property integer $codigo_mes
  *
- * @property CatalogoProducto[] $catalogoProductos
  * @property EntregaPremio[] $entregaPremios
  * @property EntregaPremio[] $entregaPremios0
  * @property PremioProducto[] $premioProductos
- * @property Puntaje[] $puntajes
- * @property PedidoDetalle[] $pedidoDetalles
+ * @property PuntajeCampana[] $puntajeCampanas
+ * @property InterlocutorComercial[] $interlocutorComercials
  */
 class Campana extends \yii\db\ActiveRecord
 {
@@ -34,7 +34,7 @@ class Campana extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['estado'], 'integer'],
+            [['estado', 'codigo_mes'], 'integer'],
             [['nombre'], 'string', 'max' => 255],
         ];
     }
@@ -48,15 +48,8 @@ class Campana extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'estado' => 'Estado',
+            'codigo_mes' => 'Codigo Mes',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCatalogoProductos()
-    {
-        return $this->hasMany(CatalogoProducto::className(), ['campana_id' => 'id']);
     }
 
     /**
@@ -86,16 +79,16 @@ class Campana extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPuntajes()
+    public function getPuntajeCampanas()
     {
-        return $this->hasMany(Puntaje::className(), ['campana_id' => 'id']);
+        return $this->hasMany(PuntajeCampana::className(), ['campana_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPedidoDetalles()
+    public function getInterlocutorComercials()
     {
-        return $this->hasMany(PedidoDetalle::className(), ['id' => 'pedido_detalle_id'])->viaTable('puntaje', ['campana_id' => 'id']);
+        return $this->hasMany(InterlocutorComercial::className(), ['id' => 'interlocutor_comercial_id'])->viaTable('puntaje_campana', ['campana_id' => 'id']);
     }
 }

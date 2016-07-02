@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'producto_id',
             'nombre',
             'estado',
-            'puntaje_con_caje',
+            'puntaje_con_canje',
             'puntaje_sin_canje',
         ],
     ]) ?>

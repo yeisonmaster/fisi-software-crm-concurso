@@ -20,11 +20,11 @@ use Yii;
  * @property EntregaPremio[] $entregaPremios
  * @property EntregaPremioRanking[] $entregaPremioRankings
  * @property PremioRanking[] $premioRankings
- * @property Roles $roles
- * @property Zona $zona
  * @property Pedido[] $pedidos
- * @property Relacion[] $relacions
- * @property Relacion[] $relacions0
+ * @property PuntajeAnual[] $puntajeAnuals
+ * @property RankingAnual[] $rankingAnualAnios
+ * @property PuntajeCampana[] $puntajeCampanas
+ * @property Campana[] $campanas
  */
 class InterlocutorComercial extends \yii\db\ActiveRecord
 {
@@ -47,8 +47,6 @@ class InterlocutorComercial extends \yii\db\ActiveRecord
             [['codigo'], 'string', 'max' => 10],
             [['nombre', 'apellido', 'email'], 'string', 'max' => 255],
             [['telefono'], 'string', 'max' => 45],
-            [['roles_id'], 'exist', 'skipOnError' => true, 'targetClass' => Roles::className(), 'targetAttribute' => ['roles_id' => 'id']],
-            [['zona_id'], 'exist', 'skipOnError' => true, 'targetClass' => Zona::className(), 'targetAttribute' => ['zona_id' => 'id']],
         ];
     }
 
@@ -97,22 +95,6 @@ class InterlocutorComercial extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRoles()
-    {
-        return $this->hasOne(Roles::className(), ['id' => 'roles_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getZona()
-    {
-        return $this->hasOne(Zona::className(), ['id' => 'zona_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getPedidos()
     {
         return $this->hasMany(Pedido::className(), ['interlocutor_comercial_id' => 'id']);
@@ -121,16 +103,32 @@ class InterlocutorComercial extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRelacions()
+    public function getPuntajeAnuals()
     {
-        return $this->hasMany(Relacion::className(), ['interlocutor_comercial_id' => 'id']);
+        return $this->hasMany(PuntajeAnual::className(), ['interlocutor_comercial_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRelacions0()
+    public function getRankingAnualAnios()
     {
-        return $this->hasMany(Relacion::className(), ['interlocutor_comercial_id_alt' => 'id']);
+        return $this->hasMany(RankingAnual::className(), ['anio' => 'ranking_anual_anio'])->viaTable('puntaje_anual', ['interlocutor_comercial_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPuntajeCampanas()
+    {
+        return $this->hasMany(PuntajeCampana::className(), ['interlocutor_comercial_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCampanas()
+    {
+        return $this->hasMany(Campana::className(), ['id' => 'campana_id'])->viaTable('puntaje_campana', ['interlocutor_comercial_id' => 'id']);
     }
 }

@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PremioProductoSearch */
+/* @var $searchModel app\models\PuntajeCampanaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Premio Productos';
+$this->title = 'Puntaje Campanas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="premio-producto-index">
+<div class="puntaje-campana-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Premio Producto', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Puntaje Campana', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,13 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'campana_id',
-            'producto_id',
-            'nombre',
-            'estado',
-            // 'puntaje_con_canje',
-            // 'puntaje_sin_canje',
+            'interlocutor_comercial_id',
+            'puntaje_actual',
+            'puntaje_acumulado',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

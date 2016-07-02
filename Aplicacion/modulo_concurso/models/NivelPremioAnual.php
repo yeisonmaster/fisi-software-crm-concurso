@@ -9,7 +9,6 @@ use Yii;
  *
  * @property integer $ranking_anual_anio
  * @property integer $nivel_ranking_id
- * @property string $nombre
  * @property integer $puntaje_minimo
  * @property integer $puntaje_hasta
  *
@@ -33,9 +32,8 @@ class NivelPremioAnual extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ranking_anual_anio', 'nivel_ranking_id', 'nombre', 'puntaje_minimo', 'puntaje_hasta'], 'required'],
+            [['ranking_anual_anio', 'nivel_ranking_id', 'puntaje_minimo', 'puntaje_hasta'], 'required'],
             [['ranking_anual_anio', 'nivel_ranking_id', 'puntaje_minimo', 'puntaje_hasta'], 'integer'],
-            [['nombre'], 'string', 'max' => 45],
             [['nivel_ranking_id'], 'exist', 'skipOnError' => true, 'targetClass' => NivelRanking::className(), 'targetAttribute' => ['nivel_ranking_id' => 'id']],
             [['ranking_anual_anio'], 'exist', 'skipOnError' => true, 'targetClass' => RankingAnual::className(), 'targetAttribute' => ['ranking_anual_anio' => 'anio']],
         ];
@@ -49,7 +47,6 @@ class NivelPremioAnual extends \yii\db\ActiveRecord
         return [
             'ranking_anual_anio' => 'Ranking Anual Anio',
             'nivel_ranking_id' => 'Nivel Ranking ID',
-            'nombre' => 'Nombre',
             'puntaje_minimo' => 'Puntaje Minimo',
             'puntaje_hasta' => 'Puntaje Hasta',
         ];

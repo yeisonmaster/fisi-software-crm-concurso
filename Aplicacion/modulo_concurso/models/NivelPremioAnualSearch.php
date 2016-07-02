@@ -19,7 +19,6 @@ class NivelPremioAnualSearch extends NivelPremioAnual
     {
         return [
             [['ranking_anual_anio', 'nivel_ranking_id', 'puntaje_minimo', 'puntaje_hasta'], 'integer'],
-            [['nombre'], 'safe'],
         ];
     }
 
@@ -64,8 +63,6 @@ class NivelPremioAnualSearch extends NivelPremioAnual
             'puntaje_minimo' => $this->puntaje_minimo,
             'puntaje_hasta' => $this->puntaje_hasta,
         ]);
-
-        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

@@ -4,17 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Puntaje */
+/* @var $model app\models\PuntajeCampana */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="puntaje-form">
+<div class="puntaje-campana-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'campana_id')->textInput() ?>
 
-    <?= $form->field($model, 'pedido_detalle_id')->textInput() ?>
+    <?= $form->field($model, 'interlocutor_comercial_id')->textInput() ?>
 
     <?= $form->field($model, 'puntaje_actual')->textInput() ?>
 

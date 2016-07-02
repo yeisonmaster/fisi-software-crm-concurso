@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Puntaje;
+use app\models\PuntajeAnual;
 
 /**
- * PuntajeSearch represents the model behind the search form about `app\models\Puntaje`.
+ * PuntajeAnualSearch represents the model behind the search form about `app\models\PuntajeAnual`.
  */
-class PuntajeSearch extends Puntaje
+class PuntajeAnualSearch extends PuntajeAnual
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class PuntajeSearch extends Puntaje
     public function rules()
     {
         return [
-            [['campana_id', 'pedido_detalle_id', 'puntaje_actual', 'puntaje_acumulado'], 'integer'],
+            [['ranking_anual_anio', 'interlocutor_comercial_id'], 'integer'],
+            [['puntaje_acumulado'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class PuntajeSearch extends Puntaje
      */
     public function search($params)
     {
-        $query = Puntaje::find();
+        $query = PuntajeAnual::find();
 
         // add conditions that should always apply here
 
@@ -58,11 +59,11 @@ class PuntajeSearch extends Puntaje
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'campana_id' => $this->campana_id,
-            'pedido_detalle_id' => $this->pedido_detalle_id,
-            'puntaje_actual' => $this->puntaje_actual,
-            'puntaje_acumulado' => $this->puntaje_acumulado,
+            'ranking_anual_anio' => $this->ranking_anual_anio,
+            'interlocutor_comercial_id' => $this->interlocutor_comercial_id,
         ]);
+
+        $query->andFilterWhere(['like', 'puntaje_acumulado', $this->puntaje_acumulado]);
 
         return $dataProvider;
     }

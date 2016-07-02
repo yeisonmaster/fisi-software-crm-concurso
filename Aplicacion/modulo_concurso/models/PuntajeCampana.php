@@ -5,24 +5,24 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "puntaje".
+ * This is the model class for table "puntaje_campana".
  *
  * @property integer $campana_id
- * @property integer $pedido_detalle_id
+ * @property integer $interlocutor_comercial_id
  * @property integer $puntaje_actual
  * @property integer $puntaje_acumulado
  *
  * @property Campana $campana
- * @property PedidoDetalle $pedidoDetalle
+ * @property InterlocutorComercial $interlocutorComercial
  */
-class Puntaje extends \yii\db\ActiveRecord
+class PuntajeCampana extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'puntaje';
+        return 'puntaje_campana';
     }
 
     /**
@@ -31,10 +31,10 @@ class Puntaje extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['campana_id', 'pedido_detalle_id'], 'required'],
-            [['campana_id', 'pedido_detalle_id', 'puntaje_actual', 'puntaje_acumulado'], 'integer'],
+            [['campana_id', 'interlocutor_comercial_id'], 'required'],
+            [['campana_id', 'interlocutor_comercial_id', 'puntaje_actual', 'puntaje_acumulado'], 'integer'],
             [['campana_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campana::className(), 'targetAttribute' => ['campana_id' => 'id']],
-            [['pedido_detalle_id'], 'exist', 'skipOnError' => true, 'targetClass' => PedidoDetalle::className(), 'targetAttribute' => ['pedido_detalle_id' => 'id']],
+            [['interlocutor_comercial_id'], 'exist', 'skipOnError' => true, 'targetClass' => InterlocutorComercial::className(), 'targetAttribute' => ['interlocutor_comercial_id' => 'id']],
         ];
     }
 
@@ -45,7 +45,7 @@ class Puntaje extends \yii\db\ActiveRecord
     {
         return [
             'campana_id' => 'Campana ID',
-            'pedido_detalle_id' => 'Pedido Detalle ID',
+            'interlocutor_comercial_id' => 'Interlocutor Comercial ID',
             'puntaje_actual' => 'Puntaje Actual',
             'puntaje_acumulado' => 'Puntaje Acumulado',
         ];
@@ -62,8 +62,8 @@ class Puntaje extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPedidoDetalle()
+    public function getInterlocutorComercial()
     {
-        return $this->hasOne(PedidoDetalle::className(), ['id' => 'pedido_detalle_id']);
+        return $this->hasOne(InterlocutorComercial::className(), ['id' => 'interlocutor_comercial_id']);
     }
 }

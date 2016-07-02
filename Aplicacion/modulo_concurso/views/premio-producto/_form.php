@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'estado')->textInput() ?>
 
-    <?= $form->field($model, 'puntaje_con_caje')->textInput() ?>
+    <?= $form->field($model, 'puntaje_con_canje')->textInput() ?>
 
     <?= $form->field($model, 'puntaje_sin_canje')->textInput() ?>
 

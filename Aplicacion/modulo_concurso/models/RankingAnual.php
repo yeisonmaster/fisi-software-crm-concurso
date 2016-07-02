@@ -13,6 +13,8 @@ use Yii;
  *
  * @property NivelPremioAnual[] $nivelPremioAnuals
  * @property NivelRanking[] $nivelRankings
+ * @property PuntajeAnual[] $puntajeAnuals
+ * @property InterlocutorComercial[] $interlocutorComercials
  */
 class RankingAnual extends \yii\db\ActiveRecord
 {
@@ -61,5 +63,21 @@ class RankingAnual extends \yii\db\ActiveRecord
     public function getNivelRankings()
     {
         return $this->hasMany(NivelRanking::className(), ['id' => 'nivel_ranking_id'])->viaTable('nivel_premio_anual', ['ranking_anual_anio' => 'anio']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPuntajeAnuals()
+    {
+        return $this->hasMany(PuntajeAnual::className(), ['ranking_anual_anio' => 'anio']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInterlocutorComercials()
+    {
+        return $this->hasMany(InterlocutorComercial::className(), ['id' => 'interlocutor_comercial_id'])->viaTable('puntaje_anual', ['ranking_anual_anio' => 'anio']);
     }
 }

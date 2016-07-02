@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'ranking_anual_anio',
             'nivel_ranking_id',
-            'nombre',
             'puntaje_minimo',
             'puntaje_hasta',
 

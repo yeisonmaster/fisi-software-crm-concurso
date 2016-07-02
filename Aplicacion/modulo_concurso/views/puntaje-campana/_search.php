@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\PuntajeSearch */
+/* @var $model app\models\PuntajeCampanaSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="puntaje-search">
+<div class="puntaje-campana-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'campana_id') ?>
 
-    <?= $form->field($model, 'pedido_detalle_id') ?>
+    <?= $form->field($model, 'interlocutor_comercial_id') ?>
 
     <?= $form->field($model, 'puntaje_actual') ?>
 

@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Puntaje */
+/* @var $model app\models\PuntajeAnual */
 
-$this->title = 'Create Puntaje';
-$this->params['breadcrumbs'][] = ['label' => 'Puntajes', 'url' => ['index']];
+$this->title = 'Create Puntaje Anual';
+$this->params['breadcrumbs'][] = ['label' => 'Puntaje Anuals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="puntaje-create">
+<div class="puntaje-anual-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
