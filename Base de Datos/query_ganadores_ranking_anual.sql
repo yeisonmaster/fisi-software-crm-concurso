@@ -28,7 +28,7 @@ BEGIN
 	on	ranking_anual.anio = nivel_premio_anual.ranking_anual_anio
 		ranking_anual.anio = @anio
 	inner join puntaje_anual
-	on	puntaje_anual.interlocutor_comercial_id = interlocutor_comercial.id
+	on	puntaje_anual.interlocutor_comercial_id = interlocutor_comercial.id and
 		puntaje_anual.ranking_anual_anio = ranking_anual.anio and
 		puntaje_anual.ranking_anual_anio = @anio
 	where
