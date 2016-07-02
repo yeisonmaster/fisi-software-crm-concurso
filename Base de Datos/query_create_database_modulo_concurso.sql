@@ -16,7 +16,7 @@ CREATE SCHEMA IF NOT EXISTS `crm` DEFAULT CHARACTER SET utf8 ;
 USE `crm` ;
 
 -- -----------------------------------------------------
--- Table `crm`.`interlocutor_comercial`
+-- Table `crm`.`interlocutor_comercial` (QUITAR AL UNIR CON OTROS GRUPOS)
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `crm`.`interlocutor_comercial` ;
 
@@ -30,24 +30,12 @@ CREATE TABLE IF NOT EXISTS `crm`.`interlocutor_comercial` (
   `email` VARCHAR(255) NULL,
   `telefono` VARCHAR(45) NULL,
   `estado` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_interlocutor_comercial_zona1_idx` (`zona_id` ASC),
-  INDEX `fk_interlocutor_comercial_roles1_idx` (`roles_id` ASC),
-  CONSTRAINT `fk_interlocutor_comercial_zona1`
-    FOREIGN KEY (`zona_id`)
-    REFERENCES `crm`.`zona` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_interlocutor_comercial_roles1`
-    FOREIGN KEY (`roles_id`)
-    REFERENCES `crm`.`roles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `crm`.`producto`
+-- Table `crm`.`producto` (QUITAR AL UNIR CON OTROS GRUPOS)
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `crm`.`producto` ;
 
@@ -61,18 +49,12 @@ CREATE TABLE IF NOT EXISTS `crm`.`producto` (
   `precio_vta` DECIMAL(10,2) NULL,
   `descuento` INT NULL,
   `estado` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_producto_familia1_idx` (`familia_id` ASC),
-  CONSTRAINT `fk_producto_familia1`
-    FOREIGN KEY (`familia_id`)
-    REFERENCES `crm`.`familia` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `crm`.`campana`
+-- Table `crm`.`campana` (QUITAR AL UNIR CON OTROS GRUPOS)
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `crm`.`campana` ;
 
@@ -86,7 +68,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `crm`.`operacion`
+-- Table `crm`.`operacion` (QUITAR AL UNIR CON OTROS GRUPOS)
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `crm`.`operacion` ;
 
@@ -99,21 +81,12 @@ CREATE TABLE IF NOT EXISTS `crm`.`operacion` (
   `estado` INT NULL COMMENT '0: INACTIVO\n1: ACTIVO',
   `observacion` VARCHAR(45) NOT NULL,
   `fecha_operacion` DATETIME NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_operacion_tipo_operacion2_idx` (`tipo_operacion_id` ASC),
-  INDEX `fk_operacion_pedido1_idx` (`pedido_id` ASC),
-  CONSTRAINT `fk_operacion_tipo_operacion2`
-    FOREIGN KEY (`tipo_operacion_id`)
-    REFERENCES `crm`.`tipo_operacion` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_operacion_pedido1`
-    FOREIGN KEY (`pedido_id`)
-    REFERENCES `crm`.`pedido` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Considerar tablas en adelante
+-- -----------------------------------------------------
 
 -- -----------------------------------------------------
 -- Table `crm`.`premio_producto`
@@ -123,7 +96,7 @@ DROP TABLE IF EXISTS `crm`.`premio_producto` ;
 CREATE TABLE IF NOT EXISTS `crm`.`premio_producto` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador del premio que puede ser un producto',
   `campana_id` INT NOT NULL COMMENT 'Campaña a la que pertenece el premio',
-  `producto_id` INT NOT NULL COMMENT 'Producto reverenciado que ahora será premio',
+  `producto_id` INT NOT NULL COMMENT 'Producto referenciado que ahora será premio',
   `nombre` VARCHAR(255) NULL COMMENT 'Nombre del premio',
   `estado` INT NULL COMMENT 'Estado del premio\n0: inactivo\n1: activo',
   `puntaje_con_canje` INT NULL COMMENT 'Puntaje del premio a descontarse con el canje',
