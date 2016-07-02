@@ -121,4 +121,21 @@ class PremioProductoController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    /**
+     * Lists all PremioProducto models.
+     * @return mixed
+     */
+    public function actionReporte($campana_id)
+    {
+        $command = Yii::$app->db->createCommand("CALL SP_LISTA_PREMIOS_CAMPANA(:CAMPANA_ID)");
+        $dataProvider = $command->bindValue(":CAMPANA_ID", $campana_id)->queryAll();
+
+        //var_dump($dataProvider);
+
+        return $this->render('reporte', [
+            'dataProvider' => $dataProvider,
+            'campana_id' => $campana_id
+        ]);
+    }
 }

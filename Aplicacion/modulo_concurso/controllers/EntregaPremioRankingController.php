@@ -125,4 +125,21 @@ class EntregaPremioRankingController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    /**
+     * Lists all PremioRankings models.
+     * @return mixed
+     */
+    public function actionReporte($anio)
+    {
+        $command = Yii::$app->db->createCommand("CALL SP_LISTA_GANADORES_RANKING_ANUAL(:ANIO)");
+        $dataProvider = $command->bindValue(":ANIO", $anio)->queryAll();
+
+        //var_dump($dataProvider);
+
+        return $this->render('reporte', [
+            'dataProvider' => $dataProvider,
+            'anio' => $anio
+        ]);
+    }
 }
