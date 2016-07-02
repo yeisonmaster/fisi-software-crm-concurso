@@ -66,6 +66,24 @@ CREATE TABLE IF NOT EXISTS `crm`.`campana` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `crm`.`pedido` (QUITAR AL UNIR CON OTROS GRUPOS)
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `crm`.`pedido` ;
+
+CREATE TABLE IF NOT EXISTS `crm`.`pedido` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tipo_pedido_id` INT NOT NULL,
+  `interlocutor_comercial_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_pedido_interlocutor_comercial1_idx` (`interlocutor_comercial_id` ASC),
+  CONSTRAINT `fk_pedido_interlocutor_comercial1`
+    FOREIGN KEY (`interlocutor_comercial_id`)
+    REFERENCES `crm`.`interlocutor_comercial` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `crm`.`operacion` (QUITAR AL UNIR CON OTROS GRUPOS)
@@ -170,7 +188,9 @@ CREATE TABLE IF NOT EXISTS `crm`.`ranking_anual` (
   `fecha_ranking` DATETIME NULL COMMENT 'Fecha referencial de inicio del ranking',
   PRIMARY KEY (`anio`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2016
 COMMENT = 'Contiene los datos básicos del ranking anual de los colaboradores (interlocutores) a desarrollarse en la organización';
+
 
 
 -- -----------------------------------------------------

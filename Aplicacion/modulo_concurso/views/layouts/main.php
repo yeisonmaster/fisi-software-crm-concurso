@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'CRM Modulo Concurso',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,20 +37,30 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+            ['label' => 'Incentivo por campaña',
+            'items' => [
+                 ['label' => 'Premio Producto', 'url' => '../web/index.php?r=premio-producto'],
+                 ['label' => 'Premio Tipo', 'url' => '../web/index.php?r=premio-ranking'],
+            ]],
+            ['label' => 'Premios por Ranking Anual',
+            'items' => [
+                 ['label' => 'Ranking Anual', 'url' => '../web/index.php?r=ranking-anual'],
+                 ['label' => 'Nivel Ranking', 'url' => '../web/index.php?r=nivel-ranking'],
+                 ['label' => 'Nivel Premio Anual', 'url' => '../web/index.php?r=nivel-premio-anual'],
+                 ['label' => 'Premio Ranking', 'url' => '../web/index.php?r=premio-ranking'],
+            ]],
+            ['label' => 'Ranking y Entrega Premio',
+            'items' => [
+                 ['label' => 'Entrega Premios Campaña', 'url' => '../web/index.php?r=entrega-premio'],
+                 ['label' => 'Entrega Premio Ranking', 'url' => '../web/index.php?r=entrega-premio-ranking'],
+            ]],
+            ['label' => 'Reportes',
+            'items' => [
+                 ['label' => 'Premios Producto Campaña', 'url' => '../web/index.php?r=premio-producto/reporte&campana_id=1'],
+                 ['label' => 'Premios Ranking Anual', 'url' => '../web/index.php?r=premio-ranking/reporte&anio=2016'],
+                 ['label' => 'Ganadores Campaña', 'url' => '../web/index.php?r=entrega-premio/reporte&campana_id=1'],
+                 ['label' => 'Ganadores Ranking Anual', 'url' => '../web/index.php?r=entrega-premio-ranking/reporte&anio=2016'],
+            ]],
         ],
     ]);
     NavBar::end();
@@ -66,7 +76,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Modulo Concurso <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
